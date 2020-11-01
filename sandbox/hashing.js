@@ -4,5 +4,7 @@ var hashedPassword = bcrypt.hashSync('asdfasdf')
 
 console.log(hashedPassword)
 
-var hashTest = bcrypt.compareSync('asdfasdfs',hashedPassword)
+var hashTest = bcrypt.compareSync('asdfasdf',hashedPassword)
 console.log(hashTest)
+
+//asdfasdf -> LDKJFCVKSidfjlwkedf 
