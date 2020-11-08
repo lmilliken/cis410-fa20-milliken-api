@@ -13,6 +13,35 @@ app.use(express.json())
 app.use(cors())
 
 
+app.post('/contacts/logout', auth, (req,res)=>{
+    var query = `UPDATE Contact
+    SET Token = NULL
+    WHERE ContactPK = ${req.contact.ContactPK}`
+
+    db.executeQuery(query)
+        .then(()=>{res.status(200).send()})
+        .catch((error)=>{
+            console.log("error in POST /contacts/logout", error)
+            res.status(500).send()
+    })
+})
+
+// app.get('/reviews/me', auth, async(req,res)=>{
+//     let contactPK = req.contact.ContactPK;
+
+// })
+
+// app.patch("/reviews/:pk", auth, async(req,res)=>{
+//     let reviewPK = req.params.pk
+//     //Make sure that the user can only edit their own reviews
+// })
+
+// app.delete("/reviews/:pk", auth, async(req,res)=>{
+//     let reviewPK = req.params.pk
+//     //Make sure that the user can only edit their own reviews
+// })
+
+app.get("/", (req,res)=>{res.send("Hello world.")})
 
 
 app.post("/reviews", auth, async (req,res)=>{
